@@ -7,7 +7,7 @@ import { type HabitCollection, habitSchema } from "./schemas/habit";
 
 addRxPlugin(RxDBDevModePlugin);
 
-export type HabitDatabaseCollections = {
+type HabitDatabaseCollections = {
 	habits: HabitCollection;
 };
 
@@ -38,4 +38,5 @@ const initializeDatabase = async () => {
 	return habitDatabase;
 };
 
+export type { HabitDatabaseCollections };
 export { initializeDatabase };

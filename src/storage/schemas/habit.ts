@@ -26,7 +26,9 @@ export const habitSchemaLiteral = {
 			type: "string",
 			format: "date-time",
 			final: true,
-			default: new Date().toISOString(),
+			//! Default to epoch time for testing only right now, as when the DB is created, the
+			//! hash will be different if we just use the current time and we will get DB6 error
+			default: new Date("1970-01-01T00:00:00.000Z").toISOString(),
 		},
 	},
 	required: ["id", "title"],
@@ -37,9 +39,8 @@ const schemaTyped = toTypedRxJsonSchema(habitSchemaLiteral);
 type HabitDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
 	typeof schemaTyped
 >;
-type HabitCollectionType = RxCollection<HabitDocType>;
 type HabitCollection = RxCollection<HabitDocType>;
 const habitSchema: RxJsonSchema<HabitDocType> = habitSchemaLiteral;
 
-export { type HabitDocType, type HabitCollectionType, type HabitCollection };
+export { type HabitDocType, type HabitCollection };
 export { habitSchema };
