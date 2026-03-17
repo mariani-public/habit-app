@@ -5,7 +5,7 @@ import {
   toTypedRxJsonSchema,
 } from 'rxdb';
 
-const habitSchemaLiteral = {
+export const habitSchemaLiteral = {
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -30,17 +30,8 @@ const habitSchemaLiteral = {
       //! hash will be different if we just use the current time and we will get DB6 error
       default: new Date('1970-01-01T00:00:00.000Z').toISOString(),
     },
-    frequency: {
-      type: 'array',
-      default: ['M', 'Tu', 'W', 'Th', 'F'],
-    },
-    routineId: {
-      type: 'string',
-      maxLength: 36,
-    },
   },
   required: ['id', 'title'],
-  //   required: ['id', 'title', 'frequency'],
 } as const;
 
 const schemaTyped = toTypedRxJsonSchema(habitSchemaLiteral);
