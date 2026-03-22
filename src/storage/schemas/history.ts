@@ -5,7 +5,7 @@ import {
 	toTypedRxJsonSchema,
 } from "rxdb";
 
-const habitSchemaLiteral = {
+const historySchemaLiteral = {
 	version: 0,
 	primaryKey: "id",
 	type: "object",
@@ -15,14 +15,11 @@ const habitSchemaLiteral = {
 			final: true,
 			maxLength: 36,
 		},
-		title: {
+		habitId: {
 			type: "string",
-			maxLength: 255,
+			maxLength: 36,
 		},
-		description: {
-			type: "string",
-		},
-		created: {
+		date: {
 			type: "string",
 			format: "date-time",
 			final: true,
@@ -30,21 +27,21 @@ const habitSchemaLiteral = {
 			//! hash will be different if we just use the current time and we will get DB6 error
 			default: new Date("1970-01-01T00:00:00.000Z").toISOString(),
 		},
-		isPartOfRoutine: {
-			type: "boolean",
-			default: false,
+		status: {
+			type: "string",
+			enum: ["completed", "missed", "skipped"],
 		},
 	},
-	required: ["id", "title"],
+	required: ["id", "habitId", "date", "status"],
 } as const;
 
-const schemaTyped = toTypedRxJsonSchema(habitSchemaLiteral);
+const schemaTyped = toTypedRxJsonSchema(historySchemaLiteral);
 
-type HabitDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
+type HistoryDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
 	typeof schemaTyped
 >;
-type HabitCollection = RxCollection<HabitDocType>;
-const habitSchema: RxJsonSchema<HabitDocType> = habitSchemaLiteral;
+type HistoryCollection = RxCollection<HistoryDocType>;
+const historySchema: RxJsonSchema<HistoryDocType> = historySchemaLiteral;
 
-export { type HabitDocType, type HabitCollection };
-export { habitSchema };
+export { type HistoryDocType, type HistoryCollection };
+export { historySchema };

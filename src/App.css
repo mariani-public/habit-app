@@ -1,42 +1,48 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+	/** Green Color Palette (Primary color) **/
+	--color-green-0: #297c46; /** Primary Green **/
+	--color-green-1: #7cbb92;
+	--color-green-2: #4e9c68;
+	--color-green-3: #105d2a;
+	--color-green-4: #003e15;
+	/** Cyan Color Palette (Secondary color) **/
+	--color-cyan-0: #26596a; /** Primary Cyan **/
+	--color-cyan-1: #6c939f;
+	--color-cyan-2: #457585;
+	--color-cyan-3: #104050;
+	--color-cyan-4: #022835;
+
+	/** Lime Green Color Palette (Tertiary color) **/
+	--color-lime-0: #709c34; /** Primary Lime **/
+	--color-lime-1: #c9ea9c;
+	--color-lime-2: #9ac361;
+	--color-lime-3: #4c7513;
+	--color-lime-4: #2d4e00;
+
+	/** Red Color Palette (Complementary color) **/
+	--color-red-0: #aa4a39; /** Primary Red **/
+	--color-red-1: #ffb7aa;
+	--color-red-2: #d47b6a;
+	--color-red-3: #802615;
+	--color-red-4: #550d00;
+
+	/** Color Aliases **/
+	--color-primary: var(--color-green-0);
+	--color-secondary: var(--color-cyan-0);
+	--color-tertiary: var(--color-lime-0);
+	--color-complementary: var(--color-red-0);
+
+	--color-off-white: #f5f5f5;
+	--color-off-black: #212121;
+
+	/** Font Styles **/
+
+	/** Base Light Theme **/
+	background-color: var(--color-background);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (prefers-color-scheme: dark) {
+	:root {
+		background-color: var(--color-off-black);
+	}
 }
