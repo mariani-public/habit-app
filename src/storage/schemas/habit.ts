@@ -5,7 +5,7 @@ import {
   toTypedRxJsonSchema,
 } from 'rxdb';
 
-export const habitSchemaLiteral = {
+const habitSchemaLiteral = {
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -29,6 +29,10 @@ export const habitSchemaLiteral = {
       //! Default to epoch time for testing only right now, as when the DB is created, the
       //! hash will be different if we just use the current time and we will get DB6 error
       default: new Date('1970-01-01T00:00:00.000Z').toISOString(),
+    },
+    isPartOfRoutine: {
+      type: 'boolean',
+      default: false,
     },
   },
   required: ['id', 'title'],
