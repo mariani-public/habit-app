@@ -1,25 +1,14 @@
 import { Button, Textarea, TextInput } from '@mantine/core';
-import { type ChangeEvent, type Dispatch, type SetStateAction } from 'react';
+import { type ChangeEvent, useState } from 'react';
+import { useNewHabitFormHooks } from './NewHabitForm.hooks';
 
-interface NewHabitFormProps {
-  createNewHabit: () => void;
-  habitTitle: string;
-  setHabitTitle: Dispatch<SetStateAction<string>>;
-  habitDescription: string;
-  setHabitDescription: Dispatch<SetStateAction<string>>;
-  canCreateHabit: boolean;
-  setCanCreateHabit: Dispatch<SetStateAction<boolean>>;
-}
+const NewHabitForm = () => {
+  const [habitTitle, setHabitTitle] = useState('');
+  const [habitDescription, setHabitDescription] = useState('');
+  const [canCreateHabit, setCanCreateHabit] = useState(false);
 
-const NewHabitForm = ({
-  createNewHabit,
-  habitTitle,
-  setHabitTitle,
-  habitDescription,
-  setHabitDescription,
-  canCreateHabit,
-  setCanCreateHabit,
-}: NewHabitFormProps) => {
+  const { createNewHabit } = useNewHabitFormHooks();
+
   const handleTitleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const title = e.target.value.trim();
 
@@ -45,7 +34,10 @@ const NewHabitForm = ({
         value={habitDescription}
         onChange={(e) => setHabitDescription(e.target.value)}
       />
-      <Button onClick={createNewHabit} disabled={!canCreateHabit}>
+      <Button
+        onClick={() => createNewHabit({ habitTitle, habitDescription })}
+        disabled={!canCreateHabit}
+      >
         Create new habit
       </Button>
     </div>

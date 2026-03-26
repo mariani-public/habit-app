@@ -32,8 +32,6 @@ const TrackingGrid = () => {
     fetchHabits();
   }, [habitsCollection]);
 
-  console.log('habits', habits);
-
   return (
     <Grid columns={Object.keys(DAYS).length + 1}>
       <Grid.Col span={1}>
