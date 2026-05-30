@@ -4,12 +4,12 @@ import biomePlugin from "vite-plugin-biome";
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [
-		react(),
-		biomePlugin({
-			mode: "check",
-			files: ".",
-			applyFixes: true,
-		}),
-	],
+  plugins: [
+    react(),
+    biomePlugin({
+      mode: "check",
+      files: ".",
+      applyFixes: true,
+    }),
+  ],
 });
