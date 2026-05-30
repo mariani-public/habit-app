@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import type { RxDatabase } from 'rxdb';
-import Provider from 'rxdb-hooks/dist/Provider';
-import { TrackingGrid } from './pages/TrackingGrid/TrackingGrid';
+import { useEffect, useState } from "react";
+import type { RxDatabase } from "rxdb";
+import Provider from "rxdb-hooks/dist/Provider";
+import { TrackingGrid } from "./pages/TrackingGrid/TrackingGrid";
 import {
   type HabitDatabaseCollections,
   initializeDatabase,
-} from './storage/database';
-import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
+} from "./storage/database";
 
 function App() {
   const [db, setDb] = useState<
@@ -20,7 +18,7 @@ function App() {
     // RxDB instantiation can be asynchronous
     const init = async () => {
       const initializedDB = await initializeDatabase();
-      if (!cancelled) {
+      if (!cancelled && !db) {
         setDb(initializedDB as RxDatabase<HabitDatabaseCollections>);
       }
     };
@@ -30,7 +28,7 @@ function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [db]);
 
   return (
     <Provider db={db}>
