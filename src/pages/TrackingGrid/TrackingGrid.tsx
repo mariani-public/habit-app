@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { ClipboardCheck } from "lucide-react";
+import { Fragment, useEffect, useState } from "react";
 import { useRxCollection } from "rxdb-hooks";
+import { Button } from "../../components/Button/Button";
 import type {
   HabitCollection,
   HabitDocType,
@@ -14,6 +16,25 @@ const DAYS = {
   4: "Thursday",
   5: "Friday",
   6: "Saturday",
+};
+
+const EmptyGrid = () => {
+  const handleOnClick = () => {
+    console.log("### display new habit form");
+  };
+
+  return (
+    <div className={styles["empty-tracking-grid"]}>
+      <div className={styles["instructions"]}>
+        <h2>No habits created</h2>
+        <p>Create your first habit today and start tracking your progress!</p>
+      </div>
+      <Button onClick={handleOnClick}>
+        <ClipboardCheck />
+        Create Habit
+      </Button>
+    </div>
+  );
 };
 
 const TrackingGrid = () => {
@@ -31,28 +52,32 @@ const TrackingGrid = () => {
     fetchHabits();
   }, [habitsCollection]);
 
-  console.log("habits", habits);
-
   return (
-    <div className={styles["tracking-grid"]}>
-      <div>Habit</div>
-      {Object.entries(DAYS).map(([dayNum, dayName]) => (
-        <div key={dayNum}>
-          <h3>{dayName}</h3>
-        </div>
-      ))}
-      {habits.map((habit) => (
-        <>
-          <div key={habit.id}>{habit.title}</div>
-          {Object.entries(DAYS).map(([dayNum]) => (
-            <div
-              key={dayNum}
-              style={{ border: "2px solid orange", borderRadius: "50%" }}
-            />
+    <>
+      {habits.length > 0 ? (
+        <div className={styles["tracking-grid"]}>
+          <div>Habit</div>
+          {Object.entries(DAYS).map(([dayNum, dayName]) => (
+            <div key={dayNum}>
+              <h3>{dayName}</h3>
+            </div>
           ))}
-        </>
-      ))}
-    </div>
+          {habits.map((habit) => (
+            <Fragment key={habit.id}>
+              <div>{habit.title}</div>
+              {Object.entries(DAYS).map(([dayNum]) => (
+                <div
+                  key={dayNum}
+                  style={{ border: "2px solid orange", borderRadius: "50%" }}
+                />
+              ))}
+            </Fragment>
+          ))}
+        </div>
+      ) : (
+        <EmptyGrid />
+      )}
+    </>
   );
 };
 
