@@ -1,0 +1,18 @@
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  &.primary {
+    color: var(--color-green-4);
+    background-color: var(--color-green-1);
+
+    &:hover {
+      background-color: var(--color-green-2);
+    }
+  }
+}
