@@ -6,6 +6,7 @@ import {
   type HabitDatabaseCollections,
   initializeDatabase,
 } from "./storage/database";
+import "./App.css";
 
 function App() {
   const [db, setDb] = useState<
