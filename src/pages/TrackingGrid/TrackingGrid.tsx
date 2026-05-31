@@ -1,31 +1,31 @@
-import { ClipboardCheck } from "lucide-react";
-import { Fragment, useEffect, useState } from "react";
-import { useRxCollection } from "rxdb-hooks";
-import { Button } from "../../components/Button/Button";
+import { ClipboardCheck } from 'lucide-react';
+import { Fragment, useEffect, useState } from 'react';
+import { useRxCollection } from 'rxdb-hooks';
+import { Button } from '../../components/Button/Button';
 import type {
   HabitCollection,
   HabitDocType,
-} from "../../storage/schemas/habit";
-import styles from "./TrackingGrid.module.css";
+} from '../../storage/schemas/habit';
+import styles from './TrackingGrid.module.css';
 
 const DAYS = {
-  0: "Sunday",
-  1: "Monday",
-  2: "Tuesday",
-  3: "Wednesday",
-  4: "Thursday",
-  5: "Friday",
-  6: "Saturday",
+  0: 'Sunday',
+  1: 'Monday',
+  2: 'Tuesday',
+  3: 'Wednesday',
+  4: 'Thursday',
+  5: 'Friday',
+  6: 'Saturday',
 };
 
 const EmptyGrid = () => {
   const handleOnClick = () => {
-    console.log("### display new habit form");
+    console.log('### display new habit form');
   };
 
   return (
-    <div className={styles["empty-tracking-grid"]}>
-      <div className={styles["instructions"]}>
+    <div className={styles['empty-tracking-grid']}>
+      <div className={styles['instructions']}>
         <h2>No habits created</h2>
         <p>Create your first habit today and start tracking your progress!</p>
       </div>
@@ -38,7 +38,7 @@ const EmptyGrid = () => {
 };
 
 const TrackingGrid = () => {
-  const habitsCollection = useRxCollection("habits") as HabitCollection;
+  const habitsCollection = useRxCollection('habits') as HabitCollection;
   const [habits, setHabits] = useState<HabitDocType[]>([]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const TrackingGrid = () => {
   return (
     <>
       {habits.length > 0 ? (
-        <div className={styles["tracking-grid"]}>
+        <div className={styles['tracking-grid']}>
           <div>Habit</div>
           {Object.entries(DAYS).map(([dayNum, dayName]) => (
             <div key={dayNum}>
@@ -68,7 +68,7 @@ const TrackingGrid = () => {
               {Object.entries(DAYS).map(([dayNum]) => (
                 <div
                   key={dayNum}
-                  style={{ border: "2px solid orange", borderRadius: "50%" }}
+                  style={{ border: '2px solid orange', borderRadius: '50%' }}
                 />
               ))}
             </Fragment>

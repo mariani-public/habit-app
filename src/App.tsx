@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import type { RxDatabase } from "rxdb";
-import Provider from "rxdb-hooks/dist/Provider";
-import { TrackingGrid } from "./pages/TrackingGrid/TrackingGrid";
+import { useEffect, useState } from 'react';
+import type { RxDatabase } from 'rxdb';
+import Provider from 'rxdb-hooks/dist/Provider';
+import { TrackingGrid } from './pages/TrackingGrid/TrackingGrid';
 import {
   type HabitDatabaseCollections,
   initializeDatabase,
-} from "./storage/database";
-import "./App.css";
+} from './storage/database';
+import './App.css';
 
 function App() {
   const [db, setDb] = useState<

@@ -2,7 +2,7 @@ import {
   composeRenderProps,
   ProgressBar,
   type ProgressBarProps,
-} from "react-aria-components";
+} from 'react-aria-components';
 
 export interface LoadingSpinnerProps extends ProgressBarProps {
   size?: number;
@@ -47,8 +47,8 @@ const LoadingSpinner = (props: LoadingSpinnerProps) => {
               }
               strokeLinecap="round"
               style={{
-                rotate: "-90deg",
-                transformOrigin: "center center",
+                rotate: '-90deg',
+                transformOrigin: 'center center',
               }}
             >
               {isIndeterminate && (
