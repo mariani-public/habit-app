@@ -36,13 +36,14 @@
   --color-off-black: #212121;
 
   /** Font Styles **/
+  font-family: "Raleway", sans-serif;
 
   /** Base Light Theme **/
   background-color: var(--color-background);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     background-color: var(--color-off-black);
   }
-}
+} */
