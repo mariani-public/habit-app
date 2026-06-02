@@ -43,5 +43,4 @@ type HistoryDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
 type HistoryCollection = RxCollection<HistoryDocType>;
 const historySchema: RxJsonSchema<HistoryDocType> = historySchemaLiteral;
 
-export { type HistoryDocType, type HistoryCollection };
-export { historySchema };
+export { type HistoryCollection, type HistoryDocType, historySchema };

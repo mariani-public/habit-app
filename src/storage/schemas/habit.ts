@@ -46,5 +46,4 @@ type HabitDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
 type HabitCollection = RxCollection<HabitDocType>;
 const habitSchema: RxJsonSchema<HabitDocType> = habitSchemaLiteral;
 
-export { type HabitDocType, type HabitCollection };
-export { habitSchema };
+export { type HabitCollection, type HabitDocType, habitSchema };

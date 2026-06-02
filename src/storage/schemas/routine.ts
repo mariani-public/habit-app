@@ -51,5 +51,4 @@ type RoutineDocType = ExtractDocumentTypeFromTypedRxJsonSchema<
 type RoutineCollection = RxCollection<RoutineDocType>;
 const routineSchema: RxJsonSchema<RoutineDocType> = routineSchemaLiteral;
 
-export { type RoutineDocType, type RoutineCollection };
-export { routineSchema };
+export { type RoutineCollection, type RoutineDocType, routineSchema };

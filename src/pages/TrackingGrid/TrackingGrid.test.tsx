@@ -1,4 +1,3 @@
-import { MantineProvider } from '@mantine/core';
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-react';
 import { TrackingGrid } from './TrackingGrid.component';
@@ -9,11 +8,7 @@ vi.mock('rxdb-hooks', () => ({
 
 describe('TrackingGrid', () => {
   it('renders the grid', async () => {
-    const { getByText } = await render(
-      <MantineProvider env="test">
-        <TrackingGrid />
-      </MantineProvider>,
-    );
+    const { getByText } = await render(<TrackingGrid />);
 
     const days = [
       'Sunday',

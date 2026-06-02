@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type JSX, useEffect, useState } from 'react';
 import type { RxDatabase } from 'rxdb';
 import Provider from 'rxdb-hooks/dist/Provider';
 import { TrackingGrid } from './pages/TrackingGrid/TrackingGrid';
@@ -12,6 +12,7 @@ function App() {
   const [db, setDb] = useState<
     RxDatabase<HabitDatabaseCollections> | undefined
   >();
+  const [page, _setPage] = useState<JSX.Element>(<TrackingGrid />);
 
   useEffect(() => {
     let cancelled = false;
@@ -31,11 +32,7 @@ function App() {
     };
   }, [db]);
 
-  return (
-    <Provider db={db}>
-      <TrackingGrid />
-    </Provider>
-  );
+  return <Provider db={db}>{page}</Provider>;
 }
 
 export default App;

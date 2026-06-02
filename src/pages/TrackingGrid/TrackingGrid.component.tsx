@@ -1,11 +1,12 @@
-import { Grid, ThemeIcon } from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { ClipboardCheck } from 'lucide-react';
+import { Fragment, useEffect, useState } from 'react';
 import { useRxCollection } from 'rxdb-hooks';
+import { Button } from '../../components/Button/Button';
 import type {
   HabitCollection,
   HabitDocType,
 } from '../../storage/schemas/habit';
+import styles from './TrackingGrid.module.css';
 
 const DAYS = {
   0: 'Sunday',
@@ -15,6 +16,25 @@ const DAYS = {
   4: 'Thursday',
   5: 'Friday',
   6: 'Saturday',
+};
+
+const EmptyGrid = () => {
+  const handleOnClick = () => {
+    console.log('### display new habit form');
+  };
+
+  return (
+    <div className={styles['empty-tracking-grid']}>
+      <div className={styles['instructions']}>
+        <h2>No habits created</h2>
+        <p>Create your first habit today and start tracking your progress!</p>
+      </div>
+      <Button onClick={handleOnClick}>
+        <ClipboardCheck />
+        Create Habit
+      </Button>
+    </div>
+  );
 };
 
 const TrackingGrid = () => {
@@ -33,30 +53,31 @@ const TrackingGrid = () => {
   }, [habitsCollection]);
 
   return (
-    <Grid columns={Object.keys(DAYS).length + 1}>
-      <Grid.Col span={1}>
-        <div>Habit</div>
-      </Grid.Col>
-      {Object.entries(DAYS).map(([dayNum, dayName]) => (
-        <Grid.Col span={1} key={dayNum}>
-          <h3>{dayName}</h3>
-        </Grid.Col>
-      ))}
-      {habits.map((habit) => (
-        <>
-          <Grid.Col span={1} key={habit.id}>
-            <div>{habit.title}</div>
-          </Grid.Col>
-          {Object.entries(DAYS).map(([dayNum]) => (
-            <Grid.Col span={1} key={dayNum}>
-              <ThemeIcon radius="lg">
-                <IconCheck height="1rem" />
-              </ThemeIcon>
-            </Grid.Col>
+    <>
+      {habits.length > 0 ? (
+        <div className={styles['tracking-grid']}>
+          <div>Habit</div>
+          {Object.entries(DAYS).map(([dayNum, dayName]) => (
+            <div key={dayNum}>
+              <h3>{dayName}</h3>
+            </div>
           ))}
-        </>
-      ))}
-    </Grid>
+          {habits.map((habit) => (
+            <Fragment key={habit.id}>
+              <div>{habit.title}</div>
+              {Object.entries(DAYS).map(([dayNum]) => (
+                <div
+                  key={dayNum}
+                  style={{ border: '2px solid orange', borderRadius: '50%' }}
+                />
+              ))}
+            </Fragment>
+          ))}
+        </div>
+      ) : (
+        <EmptyGrid />
+      )}
+    </>
   );
 };
 
